@@ -10,6 +10,6 @@ def agent_function(messages: list[BaseMessage] ):
     return chain
 
 def chatbot(state: RetrieverState):
-    documents = state.retriver_results if len(state.retriver_results) > 0 else "no documents found, we don't have the answer to the question"
+    documents = state.retriver_results if len(state.retriver_results) > 0 else "no documents found, we don't have the answer to the question, do not provide any additional information."
     chain = agent_function(state.messages)
     return chain.invoke({"documents": documents})
