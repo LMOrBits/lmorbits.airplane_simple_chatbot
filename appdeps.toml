@@ -10,14 +10,24 @@ host_type = "local"
 
 [ml]
 type = "llm"
-provider = "litellm"
+provider = "local"
+model_dir = "./models"
+
+[ml.serve]
+port = 8080
+model_name = "qa_model"
+alias = "champion"
+tracking = "mlflow"
+serving_tech = "llamacpp"
 
 [ml.litellm]
-model = "openai/gpt-4o"
-temperature = 0.0
-max_tokens = 2000
+model = "openai/custom"
+api_key = "none"
+api_base = "http://localhost:8080/v1"
+temperature = 0.5
+max_tokens = 1000
 top_p = 1.0
-top_k = 5
+top_k = 50
 
 [project.dependencies.airplane_simple_retriever]
 name = "airplane_simple_retriever"
